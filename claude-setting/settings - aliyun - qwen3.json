@@ -1,0 +1,14 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-c7ff98aa7f3c44aaa2a675f294bb573c",
+    "ANTHROPIC_BASE_URL": "https://dashscope.aliyuncs.com/apps/anthropic",
+    "API_TIMEOUT_MS": "3000000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "qwen3.5-plus",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "qwen3.5-plus",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "qwen3.5-plus"
+  },
+  "model": "qwen3.5-plus-2026-02-15",
+  "autoUpdatesChannel": "latest",
+  "effortLevel": "medium"
+}
