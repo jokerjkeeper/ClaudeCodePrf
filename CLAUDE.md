@@ -152,8 +152,6 @@
 ## 七、文檔要求
 
 - README.md 保持最新，包含：安裝步驟、啟動方式、環境變數說明
-- 重要的架構決策記錄到 `.claude/decisions/` 目錄
-- API 變更需同步更新 API 文檔
 
 ---
 
@@ -184,11 +182,7 @@ project-root/
 ├── .claude/
 │   ├── session.md                     # 進度記錄
 │   ├── math.md                        # 數學模型記錄
-│   ├── permissions.log                # 權限操作日誌
 │   ├── architecture.excalidraw        # 架構圖
-│   └── decisions/                     # 架構決策記錄
-│       └── 001-why-chose-x.md
-├── src/
 ├── docs/
 └── ...
 ```
