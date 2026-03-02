@@ -52,6 +52,15 @@ safe_copy() {
     local src="$1"
     local dst="$2"
 
+    # 來源與目標是同一個檔案時直接跳過
+    local real_src real_dst
+    real_src="$(realpath "$src" 2>/dev/null || echo "$src")"
+    real_dst="$(realpath "$dst" 2>/dev/null || echo "$dst")"
+    if [[ "$real_src" == "$real_dst" ]]; then
+        print_info "跳過 (同一檔案): $(basename "$dst")"
+        return 0
+    fi
+
     if [[ -f "$dst" ]]; then
         echo -e -n "  ${YELLOW}⚠${NC} 文件已存在: ${DIM}$(basename "$dst")${NC} — 是否覆蓋? [y/N] "
         read -r overwrite
@@ -88,7 +97,7 @@ echo ""
 # ============================================================================
 print_header "步驟 1/5 — 目標專案路徑"
 
-DEFAULT_TARGET="$(dirname "$SCRIPT_DIR")"
+DEFAULT_TARGET="$SCRIPT_DIR"
 echo -e "  預設路徑: ${DIM}$DEFAULT_TARGET${NC}"
 echo -n -e "  請輸入目標專案路徑 ${DIM}(Enter 使用預設)${NC}: "
 read -r TARGET_DIR

@@ -21,7 +21,12 @@ git clone https://github.com/your-username/ClaudeCodePrf.git
 
 # 2. 執行安裝腳本
 cd ClaudeCodePrf
+
+# macOS / Linux
 bash setup.sh
+
+# Windows
+setup.bat
 ```
 
 腳本會引導你完成：
@@ -108,7 +113,8 @@ cp templates/session.md /path/to/your/project/.claude/session.md
 
 ```
 ClaudeCodePrf/
-├── setup.sh                    # 交互式安裝腳本
+├── setup.sh                    # 交互式安裝腳本 (macOS/Linux)
+├── setup.bat                   # 交互式安裝腳本 (Windows)
 ├── CLAUDE.md                   # 全局基礎配置
 ├── claude_php.md               # PHP Profile
 ├── claude_pyweb.md             # Python Web Profile
