@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx skills:*)",
+      "Bash(apify login:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "apify-ultimate-scraper@apify-agent-skills": true
+  }
+}

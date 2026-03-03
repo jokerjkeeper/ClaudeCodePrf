@@ -185,6 +185,19 @@ project-root/
 │   ├── session.md                     # 進度記錄
 │   ├── math.md                        # 數學模型記錄
 │   ├── architecture.excalidraw        # 架構圖
+│   └── claude_specs/                  # 規格說明文件目錄
+│       └── claude_spc_web.md          # 網站資訊獲取規格
 ├── docs/
 └── ...
 ```
+
+---
+
+## 十、規格說明參考
+
+規格說明文件統一放置於 `.claude/claude_specs/` 目錄下，依主題命名為 `claude_spc_<topic>.md`。
+當遇到對應主題的任務時，應先閱讀相關規格文件並遵循其流程。
+
+| 規格文件 | 主題 | 觸發時機 |
+|----------|------|----------|
+| `claude_spc_web.md` | 網站資訊獲取 | 需要獲取、爬取、分析任何網站內容時 |
