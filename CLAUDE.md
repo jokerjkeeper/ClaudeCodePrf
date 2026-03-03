@@ -59,6 +59,7 @@
 | 命令 | 行為 |
 |------|------|
 | `save` | 將當前進度寫入 `.claude/session.md` |
+| `readme` | 更新目前項目使用手冊  `reame.md` |
 | `resume` | 讀取 `.claude/session.md` 並摘要當前狀態，繼續上次工作 |
 | `export-math` | 將本次使用的數學模型、公式匯出到 `.claude/math.md` |
 | `load-math` | 讀取 `.claude/math.md` 中的數學模型作為上下文 |
