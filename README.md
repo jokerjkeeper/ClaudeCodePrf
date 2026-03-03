@@ -8,7 +8,7 @@
 
 - **全局基礎配置** — Session 管理、權限分級、代碼規範、Excalidraw 架構圖輸出
 - **4 種專案 Profile** — PHP / Python Web / Unity / Obsidian 各有專屬規範
-- **13 個自定義 Commands** — 進度追蹤、Code Review、角色切換等
+- **14 個自定義 Commands** — 進度追蹤、Code Review、角色切換等
 - **Apify 爬蟲集成** — MCP Server + Skill，一鍵配置網頁爬蟲能力
 
 ---
@@ -42,10 +42,10 @@ setup.bat
 
 | Profile | 文件 | 適用場景 |
 |---------|------|----------|
-| PHP | `claude_php.md` | Laravel 11 + Vue 3 + Tailwind，含 RBAC、三端適配 |
-| Python Web | `claude_pyweb.md` | FastAPI / Django，含 SQLAlchemy、Pydantic、pytest |
-| Unity | `claude_unity.md` | Unity 2022.3 LTS，C# 規範、Log 分析、Package 管理 |
-| Obsidian | `claude_obsi.md` | Obsidian Vault 管理、Dataview 查詢、任務篩選 |
+| PHP | `profiler/claude_php.md` | Laravel 11 + Vue 3 + Tailwind，含 RBAC、三端適配 |
+| Python Web | `profiler/claude_pyweb.md` | FastAPI / Django，含 SQLAlchemy、Pydantic、pytest |
+| Unity | `profiler/claude_unity.md` | Unity 2022.3 LTS，C# 規範、Log 分析、Package 管理 |
+| Obsidian | `profiler/claude_obsi.md` | Obsidian Vault 管理、Dataview 查詢、任務篩選 |
 
 ---
 
@@ -59,6 +59,7 @@ setup.bat
 | `/resume` | 讀取並恢復上次 Session 進度 |
 | `/task` | 將目前項目進度記錄到 task list |
 | `/path` | 打印目前工作目錄完整路徑 |
+| `/readme` | 更新目前項目的 `README.md` 使用手冊 |
 | `/report` | 生成專案狀態報告（進度、問題、建議） |
 | `/review` | 對最近修改的文件進行 Code Review |
 | `/role {角色}` | 切換到指定角色口吻（如：科學家、產品經理） |
@@ -81,6 +82,19 @@ setup.bat
 
 ---
 
+## 舊版升級
+
+如果你的專案還在使用舊版結構（profile 文件在根目錄），可以用 `refhier.bat` 一鍵重整：
+
+1. 複製最新的 `README.md` 和 `refhier.bat` 到你的專案根目錄
+2. 執行 `refhier.bat`
+
+腳本會自動：
+- 將 `claude_*.md` 從根目錄搬移至 `profiler/`
+- 更新 `CLAUDE.md` 中的路徑引用
+
+---
+
 ## 手動安裝
 
 如果不使用安裝腳本，可以手動複製文件：
@@ -90,10 +104,11 @@ setup.bat
 cp CLAUDE.md /path/to/your/project/
 
 # 2. 複製 Profile（以 PHP 為例）
-cp claude_php.md /path/to/your/project/
+mkdir -p /path/to/your/project/profiler
+cp profiler/claude_php.md /path/to/your/project/profiler/
 
 # 3. 在 CLAUDE.md 末尾加入載入指令
-echo '請同時讀取並遵守 claude_php.md 中的所有規則。' >> /path/to/your/project/CLAUDE.md
+echo '請同時讀取並遵守 profiler/claude_php.md 中的所有規則。' >> /path/to/your/project/CLAUDE.md
 
 # 4. 建立目錄結構
 mkdir -p /path/to/your/project/.claude/commands
@@ -115,14 +130,17 @@ cp templates/session.md /path/to/your/project/.claude/session.md
 ClaudeCodePrf/
 ├── setup.sh                    # 交互式安裝腳本 (macOS/Linux)
 ├── setup.bat                   # 交互式安裝腳本 (Windows)
+├── refhier.bat                 # 舊版目錄結構重整工具
 ├── CLAUDE.md                   # 全局基礎配置
-├── claude_php.md               # PHP Profile
-├── claude_pyweb.md             # Python Web Profile
-├── claude_unity.md             # Unity Profile
-├── claude_obsi.md              # Obsidian Profile
+├── profiler/                   # 專案 Profile 目錄
+│   ├── claude_php.md           # PHP Profile
+│   ├── claude_pyweb.md         # Python Web Profile
+│   ├── claude_unity.md         # Unity Profile
+│   └── claude_obsi.md          # Obsidian Profile
 ├── .claude/
 │   ├── .env.sample             # 環境變數模板 (Apify Token)
-│   └── commands/               # 13 個自定義命令
+│   └── commands/               # 14 個自定義命令
+│       ├── readme.md
 │       ├── save.md
 │       ├── resume.md
 │       ├── task.md
@@ -148,7 +166,8 @@ ClaudeCodePrf/
 ```
 your-project/
 ├── CLAUDE.md                      # 全局規則
-├── claude_<type>.md               # 專案 Profile
+├── profiler/
+│   └── claude_<type>.md           # 專案 Profile
 ├── .claude/
 │   ├── session.md                 # 進度記錄
 │   ├── commands/                  # 自定義命令

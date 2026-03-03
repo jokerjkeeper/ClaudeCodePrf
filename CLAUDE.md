@@ -159,18 +159,19 @@
 
 ## 八、專案 Profile 載入
 
-根據專案類型，在本文件同目錄下放置對應的 profile 文件：
+根據專案類型，在 `profiler/` 目錄下放置對應的 profile 文件：
 
 | 專案類型 | Profile 文件 | 說明 |
 |----------|-------------|------|
-| Unity 遊戲開發 | `claude_unity.md` | Unity 引擎、C#、遊戲邏輯 |
-| PHP Web 開發 | `claude_php.md` | Laravel / PHP 後端、前端 |
-| Python Web 開發 | `claude_pyweb.md` | Django / FastAPI、Python 全端 |
+| Unity 遊戲開發 | `profiler/claude_unity.md` | Unity 引擎、C#、遊戲邏輯 |
+| PHP Web 開發 | `profiler/claude_php.md` | Laravel / PHP 後端、前端 |
+| Python Web 開發 | `profiler/claude_pyweb.md` | Django / FastAPI、Python 全端 |
+| Obsidian 筆記 | `profiler/claude_obsi.md` | Obsidian 筆記管理 |
 
 載入方式：在 CLAUDE.md 末尾加上：
 
 ```
-請同時讀取並遵守 <profile_file> 中的所有規則。
+請同時讀取並遵守 profiler/<profile_file> 中的所有規則。
 ```
 
 ---
@@ -180,7 +181,11 @@
 ```
 project-root/
 ├── CLAUDE.md                          # ← 本文件
-├── claude_<type>.md                   # ← 專案 profile
+├── profiler/                          # ← 專案 profile 目錄
+│   ├── claude_unity.md                # Unity profile
+│   ├── claude_php.md                  # PHP profile
+│   ├── claude_pyweb.md                # Python Web profile
+│   └── claude_obsi.md                 # Obsidian profile
 ├── .claude/
 │   ├── session.md                     # 進度記錄
 │   ├── math.md                        # 數學模型記錄
