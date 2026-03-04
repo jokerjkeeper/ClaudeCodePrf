@@ -193,6 +193,9 @@ project-root/
 │   ├── architecture.excalidraw        # 架構圖
 │   └── claude_specs/                  # 規格說明文件目錄
 │       └── claude_spc_web.md          # 網站資訊獲取規格
+├── src/                               # ← 程式碼目錄
+│   ├── ai_skill_analyzer.py           # AI 技能分析可視化工具
+│   └── output/                        # 生成報告輸出目錄
 ├── docs/
 └── ...
 ```
