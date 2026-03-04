@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(npx skills:*)",
-      "Bash(apify login:*)"
+      "Bash(apify login:*)",
+      "Bash(wc:*)",
+      "Bash(xargs ls:*)"
     ]
   },
   "enabledPlugins": {
