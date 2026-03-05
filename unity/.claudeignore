@@ -1,0 +1,135 @@
+# ===== Unity generated / cache =====
+unity/Library/
+unity/Logs/
+unity/Temp/
+unity/Obj/
+unity/obj/
+unity/Build/
+unity/Builds/
+unity/UserSettings/
+unity/MemoryCaptures/
+
+# ===== Asset Bundles =====
+unity/Bundles/
+unity/Assets/AssetBundles/
+unity/Assets/StreamingAssets/AssetBundles/
+
+# ===== Large binary files =====
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.mp3
+*.wav
+*.ogg
+*.mp4
+*.mov
+*.avi
+*.webm
+*.dll
+*.so
+*.dylib
+*.exe
+*.pdb
+*.bank
+*.apk
+
+# ===== Image/texture source files (large) =====
+*.psd
+*.psb
+*.tga
+*.tif
+*.tiff
+*.exr
+*.hdr
+*.png
+*.jpg
+*.jpeg
+*.bmp
+
+# ===== Spine binary =====
+*.skel
+
+# ===== Font files =====
+*.ttf
+*.otf
+*.woff
+*.woff2
+
+# ===== IDE / editor files =====
+*.csproj
+*.sln
+*.suo
+*.user
+*.pidb
+*.booproj
+.vs/
+.vscode/
+.idea/
+
+# ===== Video directory =====
+unity/Assets/StreamingAssets/video/
+
+# ===== Third-party plugins (not our code) =====
+unity/Assets/Demigiant/
+unity/Assets/EnhancedScroller v2/
+unity/Assets/TextMesh Pro/
+unity/Assets/Spine Examples/
+unity/Assets/Unity-Logs-Viewer/
+unity/Assets/ColorPicker/
+unity/Assets/Instant Screenshot/
+unity/Assets/ThirdPlugin/
+unity/Assets/com.rlabrecque.steamworks.net/
+
+# ===== Framework (usually not modified) =====
+unity/Assets/F8Framework/
+
+# ===== Sensitive files =====
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.key
+*.pem
+*.env
+unity/steam_appid.txt
+
+# ===== Design / tools (large Excel, binaries) =====
+design/
+tools/Luban/src/
+
+# ===== Build tools output =====
+tools/localization_tools/build/
+unity/Assets/StreamingAssets/build_info
+unity/BuildLogs/
+
+# ===== Unity meta & asset files (binary/non-code) =====
+*.meta
+*.mat
+*.asset
+*.prefab
+*.unity
+*.controller
+*.anim
+*.mask
+*.overrideController
+*.physicMaterial
+*.physicsMaterial2D
+*.guiskin
+*.fontsettings
+*.mixer
+*.renderTexture
+*.lighting
+*.giparams
+*.spriteatlas
+*.inputactions
+
+# ===== Misc =====
+unity/Assets/_tmp/
+crashlytics-build.properties
+sysinfo.txt
+*.log
+~$*.xlsx
+hooks/
+lfs/
