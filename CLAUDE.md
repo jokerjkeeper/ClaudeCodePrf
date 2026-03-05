@@ -142,6 +142,7 @@
 - 每個函數加上簡潔的用途註釋
 - 錯誤處理不可省略，所有外部調用需有 try-catch 或等效機制
 - 禁止 hardcode 任何密鑰、密碼、API key（使用環境變數）
+- 禁止使用 Claude Code 直接進行大數據下載或批量資料抓取，應改為製作 Python 執行工具（腳本），讓用戶自行執行下載
 - commit message 格式遵循 Conventional Commits：`type(scope): description`
 
 ### 6.2 Git 規範
@@ -167,6 +168,7 @@
 | Unity 遊戲開發 | `profiler/claude_unity.md` | Unity 引擎、C#、遊戲邏輯 |
 | PHP Web 開發 | `profiler/claude_php.md` | Laravel / PHP 後端、前端 |
 | Python Web 開發 | `profiler/claude_pyweb.md` | Django / FastAPI、Python 全端 |
+| Python AI / LLM / CV | `profiler/claude_pyai.md` | PyTorch、LLM 應用、電腦視覺 |
 | Obsidian 筆記 | `profiler/claude_obsi.md` | Obsidian 筆記管理 |
 
 載入方式：在 CLAUDE.md 末尾加上：
@@ -186,6 +188,7 @@ project-root/
 │   ├── claude_unity.md                # Unity profile
 │   ├── claude_php.md                  # PHP profile
 │   ├── claude_pyweb.md                # Python Web profile
+│   ├── claude_pyai.md                 # Python AI / LLM / CV profile
 │   └── claude_obsi.md                 # Obsidian profile
 ├── .claude/
 │   ├── session.md                     # 進度記錄
