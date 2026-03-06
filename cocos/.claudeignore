@@ -1,0 +1,179 @@
+# ===== Cocos Creator generated / cache =====
+cocos/library/
+cocos/local/
+cocos/temp/
+cocos/build/
+cocos/builds/
+cocos/build-templates/
+cocos/settings/
+cocos/extensions/assets/
+cocos/extensions/downloads/
+cocos/extensions/cache/
+
+# ===== Asset Bundles =====
+cocos/assets/bundles/
+cocos/assets/AssetBundles/
+
+# ===== Large binary files =====
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.mp3
+*.wav
+*.ogg
+*.aac
+*.m4a
+*.mp4
+*.mov
+*.avi
+*.webm
+*.flv
+*.dll
+*.so
+*.dylib
+*.exe
+*.pdb
+*.a
+*.lib
+*.apk
+*.ipa
+*.aab
+
+# ===== Image/texture source files (large) =====
+*.psd
+*.psb
+*.tga
+*.tif
+*.tiff
+*.exr
+*.hdr
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.webp
+*.pvr
+*.pkm
+*.ktx
+*.astc
+*.etc2
+
+# ===== Spine / DragonBones binary =====
+*.skel
+*.skel.bytes
+*.dbskel
+*.tex
+*.scml
+
+# ===== Font files =====
+*.ttf
+*.otf
+*.woff
+*.woff2
+*.eot
+
+# ===== IDE / editor files =====
+*.tsproj
+*.csproj
+*.sln
+*.suo
+*.user
+*.pidb
+*.booproj
+.vs/
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ===== Video directory =====
+cocos/assets/resources/video/
+cocos/assets/streaming-assets/video/
+
+# ===== Third-party plugins (not our code) =====
+cocos/assets/plugins/
+cocos/assets/extensions/external/
+cocos/extensions/external/
+cocos/assets/DragonBones/
+cocos/assets/Spine/
+cocos/assets/TexturePacker/
+cocos/assets/ThirdPlugin/
+
+# ===== Framework (usually not modified) =====
+cocos/assets/framework/
+
+# ===== Sensitive files =====
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.key
+*.pem
+*.env
+*.cert
+*.crt
+cocos/appid.config
+cocos/wxgame.config
+
+# ===== Design / tools (large Excel, binaries) =====
+design/
+tools/Luban/src/
+tools/build/
+
+# ===== Build tools output =====
+cocos/assets/resources/build_info
+cocos/assets/streaming-assets/build_info
+build-logs/
+
+# ===== Cocos Creator meta & asset files =====
+*.meta
+*.prefab
+*.scene
+*.fire
+*.anim
+*.controller
+*.clip
+*.layout
+*.material
+*.effect
+*.fbx
+*.gltf
+*.glb
+*.mtl
+*.obj
+*.c3t
+*.c3b
+*.mesh
+*.skeleton
+
+# ===== Generated JavaScript (from TypeScript) =====
+**/*.js
+!**/node_modules/
+!**/assets/external/
+
+# ===== Mini Game specific =====
+*.wxss
+*.wxml
+*.json
+!**/tsconfig.json
+!**/package.json
+
+# ===== Misc =====
+cocos/assets/_tmp/
+*.log
+~$*.xlsx
+hooks/
+lfs/
+node_modules/
+
+# ===== Editor settings (Cocos Creator) =====
+.ccreator/
+.ccreator/
+.editorconfig
+tsconfig.json
+
+# ===== LFS files =====
+*.lfs
+.gitattributes
