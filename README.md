@@ -7,7 +7,7 @@
 ## 功能特色
 
 - **全局基礎配置** — Session 管理、權限分級、代碼規範、Excalidraw 架構圖輸出
-- **4 種專案 Profile** — PHP / Python Web / Unity / Obsidian 各有專屬規範
+- **5 種專案 Profile** — PHP / Python Web / Python AI / Unity / Obsidian 各有專屬規範
 - **14 個自定義 Commands** — 進度追蹤、Code Review、角色切換等
 - **Apify 爬蟲集成** — MCP Server + Skill，一鍵配置網頁爬蟲能力
 
@@ -44,6 +44,7 @@ setup.bat
 |---------|------|----------|
 | PHP | `profiler/claude_php.md` | Laravel 11 + Vue 3 + Tailwind，含 RBAC、三端適配 |
 | Python Web | `profiler/claude_pyweb.md` | FastAPI / Django，含 SQLAlchemy、Pydantic、pytest |
+| Python AI | `profiler/claude_pyai.md` | PyTorch、LLM 應用、電腦視覺，含模型管理、推理服務 |
 | Unity | `profiler/claude_unity.md` | Unity 2022.3 LTS，C# 規範、Log 分析、Package 管理 |
 | Obsidian | `profiler/claude_obsi.md` | Obsidian Vault 管理、Dataview 查詢、任務篩選 |
 
@@ -135,6 +136,7 @@ ClaudeCodePrf/
 ├── profiler/                   # 專案 Profile 目錄
 │   ├── claude_php.md           # PHP Profile
 │   ├── claude_pyweb.md         # Python Web Profile
+│   ├── claude_pyai.md          # Python AI / LLM / CV Profile
 │   ├── claude_unity.md         # Unity Profile
 │   └── claude_obsi.md          # Obsidian Profile
 ├── .claude/
@@ -177,6 +179,46 @@ your-project/
 │   ├── settings.local.json        # MCP 配置 (可選)
 │   └── .env.sample                # 環境變數模板 (可選)
 └── ...
+```
+
+---
+
+## .claudeignore 配置
+
+`.claudeignore` 的作用類似 `.gitignore`，用於指定 Claude Code 應忽略的文件和目錄（不會被讀取或索引）。
+
+**重要：`.claudeignore` 必須放在專案根目錄下才會生效。** 放在子目錄中不會被識別。
+
+```
+your-project/
+├── .claudeignore          # ← 必須在根目錄
+├── CLAUDE.md
+└── ...
+```
+
+範例 `.claudeignore`：
+
+```gitignore
+# 模型權重與大型二進制文件
+weights/
+*.pt
+*.onnx
+*.bin
+*.safetensors
+
+# 數據集
+data/raw/
+data/processed/
+
+# 編譯產物
+node_modules/
+__pycache__/
+dist/
+build/
+
+# 其他
+*.log
+.env
 ```
 
 ---
