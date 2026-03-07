@@ -70,6 +70,9 @@
 | `task` | 將目前項目進度記錄到 task |
 | `path` | 打印目前所在目錄完整路徑 |
 | `role {科學家}` | 切換到特定角色口吻或角色背景 |
+| `api-init` | 分析項目並生成 API 接口，包含 `/api/support` 元數據端點，完成後自動更新 `api.readme` |
+| `api-ana` | 分析項目功能與已有接口的差異，確認後執行新增/更新/刪除，完成後自動更新 `api.readme` |
+| `api-docs` | 生成 API 接口文檔到 `.claude/docs/api.readme` |
 
 ---
 
