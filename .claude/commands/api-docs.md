@@ -1,6 +1,6 @@
 # API Docs - API 接口文檔生成
 
-分析當前項目的所有 API 接口，生成完整的接口文檔到 `.claude/docs/api.readme`。
+分析當前項目的所有 API 接口，生成完整的接口文檔到 `.claude/docs/api.md`。
 
 ## 執行步驟
 
@@ -21,7 +21,7 @@
      - 認證需求（如有）
 
 3. **生成文檔**
-   - 將文檔寫入 `.claude/docs/api.readme`
+   - 將文檔寫入 `.claude/docs/api.md`
    - 使用以下格式：
 
    ```markdown

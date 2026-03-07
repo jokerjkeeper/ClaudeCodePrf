@@ -11,7 +11,7 @@
 2. **分析已有 API 接口**
    - 讀取現有的 API 路由與控制器代碼
    - 讀取 `/api/support` 端點的元數據（如已存在）
-   - 讀取 `.claude/docs/api.readme`（如已存在）
+   - 讀取 `.claude/docs/api.md`（如已存在）
 
 3. **比對差異，生成分析報告**
    - 以表格形式列出分析結果：
@@ -45,7 +45,7 @@
    - 同步更新 `/api/support` 端點的元數據
 
 6. **更新 API 文檔**
-   - 自動將變更同步到 `.claude/docs/api.readme`
+   - 自動將變更同步到 `.claude/docs/api.md`
    - 確保文檔與當前接口狀態一致
 
 7. **總結**

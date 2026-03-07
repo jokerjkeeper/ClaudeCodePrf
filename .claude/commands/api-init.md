@@ -45,7 +45,7 @@
      ```
 
 6. **更新 API 文檔**
-   - 自動執行 api-docs 的邏輯，將接口文檔寫入 `.claude/docs/api.readme`
+   - 自動執行 api-docs 的邏輯，將接口文檔寫入 `.claude/docs/api.md`
    - 確保文檔與生成的代碼一致
 
 7. **總結**
