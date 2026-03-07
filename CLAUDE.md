@@ -173,6 +173,8 @@
 | Python Web 開發 | `profiler/claude_pyweb.md` | Django / FastAPI、Python 全端 |
 | Python AI / LLM / CV | `profiler/claude_pyai.md` | PyTorch、LLM 應用、電腦視覺 |
 | Obsidian 筆記 | `profiler/claude_obsi.md` | Obsidian 筆記管理 |
+| Vue 前端開發 | `profiler/claude_vue.md` | Vue 3 / Nuxt、前端工程 |
+| Flutter 開發 | `profiler/claude_flutter.md` | Flutter / Dart、跨平台應用 |
 
 載入方式：在 CLAUDE.md 末尾加上：
 
