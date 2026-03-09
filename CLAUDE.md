@@ -74,6 +74,7 @@
 | `api-ana` | 分析項目功能與已有接口的差異，確認後執行新增/更新/刪除，完成後自動更新 `api.readme` |
 | `api-docs` | 生成 API 接口文檔到 `.claude/docs/api.readme` |
 | `ppt` | 生成項目簡報 PPT（會先提問確認需求，再生成） |
+| `export-talk` | 將 `.jsonl` 對話記錄導出為可讀 Markdown |
 
 ---
 
