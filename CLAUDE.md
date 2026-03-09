@@ -73,6 +73,7 @@
 | `api-init` | 分析項目並生成 API 接口，包含 `/api/support` 元數據端點，完成後自動更新 `api.readme` |
 | `api-ana` | 分析項目功能與已有接口的差異，確認後執行新增/更新/刪除，完成後自動更新 `api.readme` |
 | `api-docs` | 生成 API 接口文檔到 `.claude/docs/api.readme` |
+| `ppt` | 生成項目簡報 PPT（會先提問確認需求，再生成） |
 
 ---
 
