@@ -70,9 +70,8 @@
 | `task` | 將目前項目進度記錄到 task |
 | `path` | 打印目前所在目錄完整路徑 |
 | `role {科學家}` | 切換到特定角色口吻或角色背景 |
-| `api-init` | 分析項目並生成 API 接口，包含 `/api/support` 元數據端點，完成後自動更新 `api.readme` |
-| `api-ana` | 分析項目功能與已有接口的差異，確認後執行新增/更新/刪除，完成後自動更新 `api.readme` |
-| `api-docs` | 生成 API 接口文檔到 `.claude/docs/api.readme` |
+| `api {init\|ana\|docs}` | API 統一管理：init 初始化接口、ana 分析差異同步、docs 生成文檔 |
+| `env-check` | 檢查當前開發環境（Python/Node/Git/依賴）狀態 |
 | `ppt` | 生成項目簡報 PPT（會先提問確認需求，再生成） |
 | `export-talk` | 將 `.jsonl` 對話記錄導出為可讀 Markdown |
 | `bye` | 執行 `/save` 保存進度後，結束本次 session |
@@ -224,8 +223,10 @@ project-root/
 │   ├── session.md                     # 進度記錄
 │   ├── math.md                        # 數學模型記錄
 │   ├── architecture.excalidraw        # 架構圖
-│   └── claude_specs/                  # 規格說明文件目錄
-│       └── claude_spc_web.md          # 網站資訊獲取規格
+│   ├── claude_specs/                  # 規格說明文件目錄（SessionStart hook 自動載入）
+│   │   └── claude_spc_web.md          # 網站資訊獲取規格
+│   └── scripts/                       # 自動化腳本
+│       └── load-specs.sh              # 規格文件自動載入腳本
 ├── src/                               # ← 程式碼目錄
 │   ├── ai_skill_analyzer.py           # AI 技能分析可視化工具
 │   └── output/                        # 生成報告輸出目錄
@@ -239,7 +240,7 @@ project-root/
 
 規格說明文件統一放置於 `.claude/claude_specs/` 目錄下，依主題命名為 `claude_spc_<topic>.md`。
 
-**自動載入規則：** 每次 session 開始時，Claude Code 應掃描 `.claude/claude_specs/` 目錄下的所有 `.md` 檔案，並自動讀取其內容作為規則約束。這確保所有規格文件無需手動引用即可生效，方便跨專案共用。
+**自動載入規則：** 透過 `SessionStart` hook 自動執行 `.claude/scripts/load-specs.sh`，在每次 session 開始時自動掃描並載入 `.claude/claude_specs/` 目錄下的所有 `.md` 檔案作為規則約束。無需手動引用即可生效。
 
 | 規格文件 | 主題 | 說明 |
 |----------|------|------|

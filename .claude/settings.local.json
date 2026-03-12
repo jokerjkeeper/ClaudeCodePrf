@@ -4,7 +4,22 @@
       "Bash(npx skills:*)",
       "Bash(apify login:*)",
       "Bash(wc:*)",
-      "Bash(xargs ls:*)"
+      "Bash(xargs ls:*)",
+      "Bash(find \"J:/git/ClaudeCodePrf\" -name \"*spc*\" -o -name \"*spec*\" 2>/dev/null | head -20)",
+      "Bash(bash \"J:/git/ClaudeCodePrf/.claude/scripts/load-specs.sh\")"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/load-specs.sh",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
