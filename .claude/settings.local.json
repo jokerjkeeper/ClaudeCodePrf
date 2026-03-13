@@ -2,7 +2,6 @@
   "permissions": {
     "allow": [
       "Bash(npx skills:*)",
-      "Bash(apify login:*)",
       "Bash(wc:*)",
       "Bash(xargs ls:*)",
       "Bash(find \"J:/git/ClaudeCodePrf\" -name \"*spc*\" -o -name \"*spec*\" 2>/dev/null | head -20)",
@@ -23,7 +22,5 @@
       }
     ]
   },
-  "enabledPlugins": {
-    "apify-ultimate-scraper@apify-agent-skills": true
-  }
+  "enabledPlugins": {}
 }
