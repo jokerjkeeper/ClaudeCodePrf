@@ -8,7 +8,7 @@
 
 - **全局基礎配置** — Session 管理、權限分級、代碼規範、Excalidraw 架構圖輸出
 - **8 種專案 Profile** — PHP / Python Web / Python AI / Unity / Obsidian / Vue / Flutter / Cocos 各有專屬規範
-- **23 個自定義 Commands** — 進度追蹤、Code Review、角色切換、API 管理、PPT 生成等
+- **24 個自定義 Commands** — 進度追蹤、Code Review、角色切換、API 管理、PPT 生成等
 - **規格說明自動載入** — `SessionStart` hook 自動載入 `.claude/claude_specs/` 下的規範文件
 - **多 LLM 配置模板** — 內建阿里雲 Qwen、GLM 等多個 LLM 服務的 settings 範本
 
@@ -86,6 +86,7 @@ setup.bat
 
 | 命令 | 說明 |
 |------|------|
+| `/blog {file}` | 根據 `.claude/blog/` 素材撰寫 Blog 文章，輸出到 `./blog/` |
 | `/export-math` | 將 Session 中使用的數學模型匯出到 `.claude/math.md` |
 | `/load-math` | 載入 `.claude/math.md` 中的數學模型作為上下文 |
 | `/export-talk` | 將 `.jsonl` 對話記錄導出為可讀 Markdown |
@@ -174,7 +175,7 @@ ClaudeCodePrf/
 │   │   └── load-specs.sh       # 規格文件自動載入腳本
 │   ├── conv/                   # 對話歸檔目錄
 │   ├── skills/                 # Skill 定義文件
-│   └── commands/               # 23 個自定義命令
+│   └── commands/               # 24 個自定義命令
 │       ├── save.md
 │       ├── resume.md
 │       ├── bye.md
@@ -195,6 +196,7 @@ ClaudeCodePrf/
 │       ├── load-math.md
 │       ├── export-talk.md
 │       ├── ppt.md
+│       ├── blog.md
 │       ├── obs-pdf.md
 │       ├── obs-todo.md
 │       └── obs-plt.md
