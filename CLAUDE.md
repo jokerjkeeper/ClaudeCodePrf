@@ -74,6 +74,7 @@
 | `env-check` | 檢查當前開發環境（Python/Node/Git/依賴）狀態 |
 | `ppt` | 生成項目簡報 PPT（會先提問確認需求，再生成） |
 | `export-talk` | 將 `.jsonl` 對話記錄導出為可讀 Markdown |
+| `export-arch-html` | 將技術架構文檔（`arch.md`）轉為 HTML 供內部成員瀏覽 |
 | `bye` | 執行 `/save` 保存進度後，結束本次 session |
 
 ---

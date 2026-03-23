@@ -7,9 +7,10 @@
 ## 功能特色
 
 - **全局基礎配置** — Session 管理、權限分級、代碼規範、Excalidraw 架構圖輸出
-- **5 種專案 Profile** — PHP / Python Web / Python AI / Unity / Obsidian 各有專屬規範
-- **14 個自定義 Commands** — 進度追蹤、Code Review、角色切換等
-- **Apify 爬蟲集成** — MCP Server + Skill，一鍵配置網頁爬蟲能力
+- **8 種專案 Profile** — PHP / Python Web / Python AI / Unity / Obsidian / Vue / Flutter / Cocos 各有專屬規範
+- **23 個自定義 Commands** — 進度追蹤、Code Review、角色切換、API 管理、PPT 生成等
+- **規格說明自動載入** — `SessionStart` hook 自動載入 `.claude/claude_specs/` 下的規範文件
+- **多 LLM 配置模板** — 內建阿里雲 Qwen、GLM 等多個 LLM 服務的 settings 範本
 
 ---
 
@@ -47,6 +48,9 @@ setup.bat
 | Python AI | `profiler/claude_pyai.md` | PyTorch、LLM 應用、電腦視覺，含模型管理、推理服務 |
 | Unity | `profiler/claude_unity.md` | Unity 2022.3 LTS，C# 規範、Log 分析、Package 管理 |
 | Obsidian | `profiler/claude_obsi.md` | Obsidian Vault 管理、Dataview 查詢、任務篩選 |
+| Vue | `profiler/claude_vue.md` | Vue 3 / Nuxt，前端工程開發 |
+| Flutter | `profiler/claude_flutter.md` | Flutter / Dart，跨平台應用開發 |
+| Cocos | `profiler/claude_cocos.md` | Cocos Creator 遊戲開發 |
 
 ---
 
@@ -58,20 +62,34 @@ setup.bat
 |------|------|
 | `/save` | 保存當前 Session 進度到 `.claude/session.md` |
 | `/resume` | 讀取並恢復上次 Session 進度 |
+| `/bye` | 執行 `/save` 保存進度後，結束本次 Session |
 | `/task` | 將目前項目進度記錄到 task list |
 | `/path` | 打印目前工作目錄完整路徑 |
 | `/readme` | 更新目前項目的 `README.md` 使用手冊 |
 | `/report` | 生成專案狀態報告（進度、問題、建議） |
 | `/review` | 對最近修改的文件進行 Code Review |
 | `/role {角色}` | 切換到指定角色口吻（如：科學家、產品經理） |
+| `/conv {title}` | 將對話重點歸納到 `.claude/conv/conv_{title}.md` |
 
-### 進階 Commands
+### 開發工具 Commands
 
 | 命令 | 說明 |
 |------|------|
+| `/api {init\|ana\|docs}` | API 統一管理：初始化接口、分析差異同步、生成文檔 |
+| `/env-check` | 檢查當前開發環境（Python / Node / Git / 依賴）狀態 |
 | `/architecture` | 分析專案結構，輸出 Excalidraw 兼容的架構圖 |
+| `/export-arch-html` | 將技術架構文檔轉為 HTML 供內部成員瀏覽 |
+| `/unicmd` | 驅動 Unity 執行 GmCommand（自然語言 → 指令轉換 → HTTP 橋接） |
+| `/wp` | WePages 工單管理 |
+
+### 匯出 Commands
+
+| 命令 | 說明 |
+|------|------|
 | `/export-math` | 將 Session 中使用的數學模型匯出到 `.claude/math.md` |
 | `/load-math` | 載入 `.claude/math.md` 中的數學模型作為上下文 |
+| `/export-talk` | 將 `.jsonl` 對話記錄導出為可讀 Markdown |
+| `/ppt` | 生成項目簡報 PPT（會先提問確認需求，再生成） |
 
 ### Obsidian Commands
 
@@ -119,6 +137,10 @@ cp .claude/commands/*.md /path/to/your/project/.claude/commands/
 
 # 6. 初始化 Session 記錄
 cp templates/session.md /path/to/your/project/.claude/session.md
+
+# 7. (可選) 複製規格說明文件
+mkdir -p /path/to/your/project/profiler
+cp profiler/claude_spc_*.md /path/to/your/project/profiler/
 ```
 
 ---
@@ -138,26 +160,52 @@ ClaudeCodePrf/
 │   ├── claude_pyweb.md         # Python Web Profile
 │   ├── claude_pyai.md          # Python AI / LLM / CV Profile
 │   ├── claude_unity.md         # Unity Profile
-│   └── claude_obsi.md          # Obsidian Profile
+│   ├── claude_obsi.md          # Obsidian Profile
+│   ├── claude_vue.md           # Vue Profile
+│   ├── claude_flutter.md       # Flutter Profile
+│   ├── claude_cocos.md         # Cocos Profile
+│   ├── claude_spc_fetchweb.md  # 規格：網站資訊獲取
+│   └── claude_spc_unity_log.md # 規格：Unity Log 分析
 ├── .claude/
-│   ├── .env.sample             # 環境變數模板 (Apify Token)
-│   └── commands/               # 14 個自定義命令
-│       ├── readme.md
+│   ├── .env.sample             # 環境變數模板
+│   ├── settings.local.json     # MCP / LLM 設定
+│   ├── session.md              # Session 進度記錄
+│   ├── scripts/                # 自動化腳本
+│   │   └── load-specs.sh       # 規格文件自動載入腳本
+│   ├── conv/                   # 對話歸檔目錄
+│   ├── skills/                 # Skill 定義文件
+│   └── commands/               # 23 個自定義命令
 │       ├── save.md
 │       ├── resume.md
+│       ├── bye.md
 │       ├── task.md
 │       ├── path.md
+│       ├── readme.md
 │       ├── report.md
 │       ├── review.md
 │       ├── role.md
+│       ├── conv.md
+│       ├── api.md
+│       ├── env-check.md
 │       ├── architecture.md
+│       ├── export-arch-html.md
+│       ├── unicmd.md
+│       ├── wp.md
 │       ├── export-math.md
 │       ├── load-math.md
+│       ├── export-talk.md
+│       ├── ppt.md
 │       ├── obs-pdf.md
 │       ├── obs-todo.md
 │       └── obs-plt.md
-├── apify-skills/               # Apify Skill 模板
-│   └── apify-ultimate-scraper.md
+├── claude-setting/             # 多 LLM 服務 settings 範本
+│   ├── settings - aliyun - qwen3.json
+│   ├── settings - glm.json
+│   └── settings - origin.json
+├── src/                        # 工具程式碼
+│   └── ai_skill_collector.py   # AI 技能資料收集器
+├── unity/                      # Unity 相關文檔
+├── cocos/                      # Cocos 相關文檔
 └── templates/                  # 安裝用模板文件
     ├── session.md
     └── settings.apify.json
@@ -169,14 +217,17 @@ ClaudeCodePrf/
 your-project/
 ├── CLAUDE.md                      # 全局規則
 ├── profiler/
-│   └── claude_<type>.md           # 專案 Profile
+│   ├── claude_<type>.md           # 專案 Profile
+│   └── claude_spc_<topic>.md      # 規格說明文件 (可選)
 ├── .claude/
 │   ├── session.md                 # 進度記錄
 │   ├── commands/                  # 自定義命令
 │   │   ├── save.md
 │   │   └── ...
-│   ├── skills/                    # Apify Skill (可選)
-│   ├── settings.local.json        # MCP 配置 (可選)
+│   ├── conv/                      # 對話歸檔
+│   ├── scripts/                   # 自動化腳本
+│   ├── skills/                    # Skill 定義文件 (可選)
+│   ├── settings.local.json        # MCP / LLM 配置 (可選)
 │   └── .env.sample                # 環境變數模板 (可選)
 └── ...
 ```
@@ -223,18 +274,28 @@ build/
 
 ---
 
-## Apify 爬蟲配置
+## 多 LLM 配置
 
-啟用 Apify 後，安裝腳本會自動建立：
+`claude-setting/` 目錄提供多個 LLM 服務的 settings 範本：
 
-- `.claude/skills/apify-ultimate-scraper.md` — Skill 定義文件
-- `.claude/settings.local.json` — MCP Server 配置
-- `.claude/.env.sample` — 填入你的 `APIFY_TOKEN`
+| 配置文件 | 說明 |
+|----------|------|
+| `settings - origin.json` | 預設原始配置 |
+| `settings - aliyun - qwen3.json` | 阿里雲 Qwen3 模型配置 |
+| `settings - glm.json` | 智譜 GLM 模型配置 |
 
-使用前需要：
-1. 註冊 [Apify](https://apify.com/) 帳號
-2. 取得 API Token
-3. 填入 `.claude/.env.sample` 中的 `APIFY_TOKEN`
+使用方式：將對應的 JSON 內容複製或合併到 `.claude/settings.local.json` 中。
+
+---
+
+## 規格說明文件
+
+規格說明文件放置於 `profiler/` 目錄下，命名為 `claude_spc_<topic>.md`，透過 `SessionStart` hook 自動載入。
+
+| 規格文件 | 說明 |
+|----------|------|
+| `claude_spc_fetchweb.md` | 網站資訊獲取流程與規範 |
+| `claude_spc_unity_log.md` | Unity Log 擷取與分析注意事項 |
 
 ---
 
