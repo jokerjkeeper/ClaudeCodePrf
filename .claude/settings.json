@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+	"allow": [
+      "Read(**)",
+      "Write(**)",
+      "Edit(**)",
+      "Bash(git:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(cp:*)",
+      "Bash(find:*)",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+	  "Bash(grep:*)",
+	  "Bash(touch:*)",
+  	  "Bash(chmod:*)",
+	  "Bash(sed:*)",
+	  "Bash(python:*)",
+	  "Bash(node:*)"
+    ],
+	"ask": [
+      "Write(.env)",
+      "Write(.env.*)"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+	  "Bash(rmdir:*)",
+	  "Bash(git push --force:*)"
+    ]
+  }
+}
