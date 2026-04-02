@@ -77,6 +77,7 @@
 | `export-talk` | 將 `.jsonl` 對話記錄導出為可讀 Markdown |
 | `export-arch-html` | 將技術架構文檔（`arch.md`）轉為 HTML 供內部成員瀏覽 |
 | `bye` | 執行 `/save` 保存進度後，結束本次 session |
+| `stack-ana {market}:{ticker}` | 股票新聞分析：搜尋最新新聞與財務數據，生成利好/利空報告（`us:`/`tw:`/`cn:`） |
 
 ---
 
@@ -229,6 +230,10 @@ project-root/
 │   │   └── claude_spc_web.md          # 網站資訊獲取規格
 │   └── scripts/                       # 自動化腳本
 │       └── load-specs.sh              # 規格文件自動載入腳本
+├── stackana/                          # ← 股票分析報告輸出目錄
+│   ├── us/                            # 美股報告
+│   ├── tw/                            # 台股報告
+│   └── cn/                            # 陸股報告
 ├── src/                               # ← 程式碼目錄
 │   ├── ai_skill_analyzer.py           # AI 技能分析可視化工具
 │   └── output/                        # 生成報告輸出目錄
