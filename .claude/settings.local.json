@@ -6,7 +6,8 @@
       "Bash(xargs ls:*)",
       "Bash(find \"J:/git/ClaudeCodePrf\" -name \"*spc*\" -o -name \"*spec*\" 2>/dev/null | head -20)",
       "Bash(bash \"J:/git/ClaudeCodePrf/.claude/scripts/load-specs.sh\")",
-      "Bash(ls -d .claude/skills/apify-* | wc -l)"
+      "Bash(ls -d .claude/skills/apify-* | wc -l)",
+      "WebSearch"
     ]
   },
   "hooks": {
