@@ -68,7 +68,6 @@
 | `report` | 生成當前專案的狀態報告（進度、問題、建議） |
 | `review` | 對最近修改的文件進行 code review |
 | `task` | 將目前項目進度記錄到 task |
-| `path` | 打印目前所在目錄完整路徑 |
 | `role {科學家}` | 切換到特定角色口吻或角色背景 |
 | `api {init\|ana\|docs}` | API 統一管理：init 初始化接口、ana 分析差異同步、docs 生成文檔 |
 | `env-check` | 檢查當前開發環境（Python/Node/Git/依賴）狀態 |
