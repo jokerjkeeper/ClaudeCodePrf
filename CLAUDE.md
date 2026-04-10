@@ -68,13 +68,10 @@
 | `report` | 生成當前專案的狀態報告（進度、問題、建議） |
 | `review` | 對最近修改的文件進行 code review |
 | `task` | 將目前項目進度記錄到 task |
+| `path` | 打印目前所在目錄完整路徑 |
 | `role {科學家}` | 切換到特定角色口吻或角色背景 |
 | `api {init\|ana\|docs}` | API 統一管理：init 初始化接口、ana 分析差異同步、docs 生成文檔 |
 | `env-check` | 檢查當前開發環境（Python/Node/Git/依賴）狀態 |
-| `ppt` | 生成項目簡報 PPT（會先提問確認需求，再生成） |
-| `blog {file}` | 根據 `.claude/blog/` 素材撰寫 Blog 文章，輸出到 `./blog/` |
-| `export-talk` | 將 `.jsonl` 對話記錄導出為可讀 Markdown |
-| `export-arch-html` | 將技術架構文檔（`arch.md`）轉為 HTML 供內部成員瀏覽 |
 | `bye` | 執行 `/save` 保存進度後，結束本次 session |
 | `stack-ana {market}:{ticker}` | 股票新聞分析：搜尋最新新聞與財務數據，生成利好/利空報告（`us:`/`tw:`/`cn:`） |
 
@@ -120,25 +117,6 @@
 
 ---
 
-## 五、Excalidraw 架構圖輸出
-
-當執行 `/architecture` 時：
-
-1. 掃描專案目錄結構與關鍵模組
-2. 識別模組間的依賴與資料流關係
-3. 輸出為 `.excalidraw` JSON 格式，保存到 `.claude/architecture.excalidraw`
-
-### 節點類型映射
-
-| 概念 | Excalidraw 圖形 | 顏色 |
-|------|-----------------|------|
-| 模組 / 服務 | 矩形 (rectangle) | #a5d8ff |
-| 資料庫 | 圓柱體 (ellipse) | #ffd8a8 |
-| API 端點 | 圓角矩形 (rectangle, roundness) | #b2f2bb |
-| 外部服務 | 菱形 (diamond) | #ffec99 |
-| 資料流 | 箭頭 (arrow) | #868e96 |
-| 使用者 | 橢圓 (ellipse) | #eebefa |
-
 ---
 
 ## 六、代碼規範
@@ -149,13 +127,14 @@
 - 每個函數加上簡潔的用途註釋
 - 錯誤處理不可省略，所有外部調用需有 try-catch 或等效機制
 - 禁止 hardcode 任何密鑰、密碼、API key（使用環境變數）
-- 禁止使用 Claude Code 直接進行大數據下載或批量資料抓取，應改為製作 Python 執行工具（腳本），讓用戶自行執行下載
+- 不得在 session 中直接用 bash 執行超過 10 次連續 HTTP request（含 curl、wget）；需批量抓取時，應產出 Python 腳本讓用戶自行執行
 - commit message 格式遵循 Conventional Commits：`type(scope): description`
 
 ### 6.2 文件搜尋規範
 
 - 搜尋文件時**忽略大小寫差異**。Windows 檔案系統不區分大小寫，但工具搜尋可能區分
 - 若首次搜尋未找到文件，應嘗試不同大小寫組合（如 `README.md` / `readme.md` / `Readme.md`）再搜尋一次，而非直接回報找不到
+- 在執行 Read / Edit 前，**必須先用 Glob 確認檔名的實際大小寫**；本 repo 的 Markdown 檔名採大寫命名（如 `CLAUDE.md`、`README.md`）
 
 ### 6.3 API 串接規範
 
@@ -174,7 +153,22 @@
 - 修復在 `fix/<name>` 分支
 - 不直接在 main 上開發
 
-### 6.6 任務執行規範
+### 6.6 檔案讀取規則
+
+- 預設信任上次 Edit 的結果，不重新讀取驗證
+- 除非用戶明確說以下情況：
+  - 「我手動修改了 X 檔案」
+  - 「我剛 git pull / git checkout」
+  - 「這個檔案被外部程式修改了」
+- 收到以上提示才重新 Read 指定檔案
+
+#### 出現以下情況主動告知用戶需要重新讀取
+
+- Edit 失敗找不到目標字串
+- 邏輯上感覺檔案狀態和記憶不符
+- 距離上次讀取已經超過 10 次對話回合
+
+### 6.7 任務執行規範
 
 - **複雜任務必須先進入 Plan 模式**：當用戶提出的需求涉及系統規劃、架構設計、多文件變更、或需求不明確時，應主動建議進入 Plan 模式進行討論，確認方案後再實作。不要等用戶手動切換
 - **需求複述確認**：當用戶描述要建構的工具或功能時，先複述核心需求讓用戶確認，區分「建構一個處理原始資料的掃描器」vs「建構一個讀取現有結果的檢視器」等差異
@@ -190,17 +184,7 @@
 
 ## 八、專案 Profile 載入
 
-根據專案類型，在 `profiler/` 目錄下放置對應的 profile 文件：
-
-| 專案類型 | Profile 文件 | 說明 |
-|----------|-------------|------|
-| Unity 遊戲開發 | `profiler/claude_unity.md` | Unity 引擎、C#、遊戲邏輯 |
-| PHP Web 開發 | `profiler/claude_php.md` | Laravel / PHP 後端、前端 |
-| Python Web 開發 | `profiler/claude_pyweb.md` | Django / FastAPI、Python 全端 |
-| Python AI / LLM / CV | `profiler/claude_pyai.md` | PyTorch、LLM 應用、電腦視覺 |
-| Obsidian 筆記 | `profiler/claude_obsi.md` | Obsidian 筆記管理 |
-| Vue 前端開發 | `profiler/claude_vue.md` | Vue 3 / Nuxt、前端工程 |
-| Flutter 開發 | `profiler/claude_flutter.md` | Flutter / Dart、跨平台應用 |
+專案級別的行為規則放置於 `profiler/` 目錄下，命名為 `claude_<type>.md`。
 
 載入方式：在 CLAUDE.md 末尾加上：
 
@@ -210,45 +194,8 @@
 
 ---
 
-## 九、目錄結構約定
+## 九、規格說明參考
 
-```
-project-root/
-├── CLAUDE.md                          # ← 本文件
-├── profiler/                          # ← 專案 profile 目錄
-│   ├── claude_unity.md                # Unity profile
-│   ├── claude_php.md                  # PHP profile
-│   ├── claude_pyweb.md                # Python Web profile
-│   ├── claude_pyai.md                 # Python AI / LLM / CV profile
-│   └── claude_obsi.md                 # Obsidian profile
-├── .claude/
-│   ├── session.md                     # 進度記錄
-│   ├── math.md                        # 數學模型記錄
-│   ├── architecture.excalidraw        # 架構圖
-│   ├── claude_specs/                  # 規格說明文件目錄（SessionStart hook 自動載入）
-│   │   └── claude_spc_web.md          # 網站資訊獲取規格
-│   └── scripts/                       # 自動化腳本
-│       └── load-specs.sh              # 規格文件自動載入腳本
-├── stackana/                          # ← 股票分析報告輸出目錄
-│   ├── us/                            # 美股報告
-│   ├── tw/                            # 台股報告
-│   └── cn/                            # 陸股報告
-├── src/                               # ← 程式碼目錄
-│   ├── ai_skill_analyzer.py           # AI 技能分析可視化工具
-│   └── output/                        # 生成報告輸出目錄
-├── docs/
-└── ...
-```
+工具特定的規格與參考資料放置於 `.claude/claude_specs/` 目錄下，命名為 `claude_spc_<topic>.md`。
 
----
-
-## 十、規格說明參考
-
-規格說明文件統一放置於 `.claude/claude_specs/` 目錄下，依主題命名為 `claude_spc_<topic>.md`。
-
-**自動載入規則：** 透過 `SessionStart` hook 自動執行 `.claude/scripts/load-specs.sh`，在每次 session 開始時自動掃描並載入 `.claude/claude_specs/` 目錄下的所有 `.md` 檔案作為規則約束。無需手動引用即可生效。
-
-| 規格文件 | 主題 | 說明 |
-|----------|------|------|
-| `claude_spc_web.md` | 網站資訊獲取 | 獲取、爬取、分析網站內容的流程 |
-| `claude_spc_unity_log.md` | Unity Log 分析 | Unity log 擷取與分析的注意事項 |
+這些文件由 `SessionStart` hook 自動載入，無需手動引用。新增規格文件只需放入該目錄即可生效。

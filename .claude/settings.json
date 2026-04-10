@@ -24,11 +24,11 @@
     ],
 	"ask": [
       "Write(.env)",
-      "Write(.env.*)"
+      "Write(.env.*)",
+      "Bash(rm:*)",
+	  "Bash(rmdir:*)"
     ],
     "deny": [
-      "Bash(rm:*)",
-	  "Bash(rmdir:*)",
 	  "Bash(git push --force:*)"
     ]
   }
